@@ -1,0 +1,53 @@
+<a routerLink="/home" class="home">Dev Jobs</a>
+
+<div class="container">
+  <form [formGroup]="loginUser" id="form" (ngSubmit)="submit()">
+    <div class="form-control">
+      <label for="">Email</label>
+      <input
+        id="input"
+        type="email"
+        autocomplete="off"
+        formControlName="email"
+      />
+      <span
+        *ngIf="!loginUser.get('email').valid && loginUser.get('email').touched"
+      >
+        <span *ngIf="loginUser.get('email').errors['email']">
+          <p>Invalid Email</p>
+        </span>
+        <span *ngIf="loginUser.get('email').errors['required']">
+          <p>Filed cannot be empty</p>
+        </span>
+      </span>
+    </div>
+    <div class="form-control">
+      <label for="">Password</label>
+      <input
+        id="input"
+        type="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+      <span *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p></span
+      >
+      <span
+        *ngIf="
+          !loginUser.get('password').valid && loginUser.get('password').touched
+        "
+      >
+        <span *ngIf="loginUser.get('password').errors['minlength']">
+          <p>Invalid Password</p>
+        </span>
+        <span *ngIf="loginUser.get('password').errors['required']">
+          <p>Filed cannot be empty</p>
+        </span>
+      </span>
+    </div>
+    <button type="submit" [disabled]="!loginUser.valid">Log In</button>
+  </form>
+</div>
+<button type="button" class="demo-btn" (click)="submitDemo()">
+  Log In As Demo
+</button>

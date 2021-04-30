@@ -1,0 +1,158 @@
+<header class="jobs-header">
+  <h1>Jobs</h1>
+  <button *ngIf="displayUploadButton" (click)="displayForm()">
+    Upload Job
+  </button>
+</header>
+<div class="jobs-container" *ngIf="company">
+  <app-job [jobs]="company.jobs"></app-job>
+</div>
+
+<div class="upload-job" #uploadJobForm>
+  <header>
+    <h1>Upload Job</h1>
+    <button (click)="removeForm()"><i class="fas fa-times"></i></button>
+  </header>
+  <form [formGroup]="uploadJob" (ngSubmit)="submit()">
+    <div class="form-control">
+      <label for="">Position</label>
+      <input type="text" formControlName="position" />
+      <span
+        *ngIf="
+          !uploadJob.get('position').valid && uploadJob.get('position').touched
+        "
+      >
+        <span *ngIf="uploadJob.get('position').errors['required']"
+          ><p>This field is required</p></span
+        >
+      </span>
+    </div>
+    <div class="form-control">
+      <label for="">Job Description</label
+      ><textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="jobDescription"
+      ></textarea>
+      <span
+        *ngIf="
+          !uploadJob.get('jobDescription').valid &&
+          uploadJob.get('jobDescription').touched
+        "
+      >
+        <span *ngIf="uploadJob.get('jobDescription').errors['required']"
+          ><p>This field is required</p></span
+        >
+      </span>
+    </div>
+    <!-- <div class="display-tech" *ngIf="techArr.length > 0">
+      <div class="tech" *ngFor="let tech of techArr; let i = index">
+        <p>{{ tech }}</p>
+        <button class="remove" type="button" (click)="removeTech(i)">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div> -->
+    <div class="form-control">
+      <label for="">Techonology</label
+      ><input type="text" formControlName="technology" />
+      <span
+        *ngIf="
+          !uploadJob.get('technology').valid &&
+          uploadJob.get('technology').touched
+        "
+      >
+        <span *ngIf="uploadJob.get('technology').errors['required']"
+          ><p>This field is required</p></span
+        >
+        <span *ngIf="uploadJob.get('technology').errors['pattern']"
+          ><p>No commas please, use spaces instead</p></span
+        >
+      </span>
+      <!-- <div class="buttons-tech">
+        <button class="add" type="button" (click)="addTech()">Add</button>
+      </div> -->
+    </div>
+    <div class="form-control">
+      <label for="">City</label><input type="text" formControlName="city" />
+      <span
+        *ngIf="!uploadJob.get('city').valid && uploadJob.get('city').touched"
+      >
+        <span *ngIf="uploadJob.get('city').errors['required']"
+          ><p>This field is required</p></span
+        >
+      </span>
+    </div>
+    <div class="form-control">
+      <label for="">Country</label
+      ><input type="text" formControlName="country" />
+      <span
+        *ngIf="
+          !uploadJob.get('country').valid && uploadJob.get('country').touched
+        "
+      >
+        <span *ngIf="uploadJob.get('country').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+
+    <div class="form-control">
+      <label for="">Employment type</label>
+      <select name="" id="" formControlName="employment">
+        <option value="Full Time">Full Time</option>
+        <option value="Part Time">Part Time</option>
+        <option value="Remote">Remote</option>
+        <option value="Internship">Internship</option>
+      </select>
+    </div>
+    <div class="form-control">
+      <label for="">Seniority</label>
+      <select name="" id="" formControlName="seniority">
+        <option value="Student Level">Student Level</option>
+        <option value="Entry Level">Entry Level</option>
+
+        <option value="Junior">Junior</option>
+        <option value="Medior">Medior</option>
+        <option value="Senior">Senior</option>
+      </select>
+    </div>
+    <div class="form-control">
+      <label for="">Salary</label>
+      <input type="number" formControlName="salary" />
+      <span
+        *ngIf="
+          !uploadJob.get('salary').valid && uploadJob.get('salary').touched
+        "
+      >
+        <span *ngIf="uploadJob.get('salary').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+      <!-- <select name="" id="">
+        <option value="">400$ - 600$</option>
+        <option value="">600$ - 800$</option>
+        <option value="">800$ - 1000$</option>
+        <option value="">1000$ - 1200$</option>
+        <option value="">1200$ +</option>
+      </select> -->
+    </div>
+    <div class="form-control">
+      <label for="">Years Of Expirience</label>
+      <input type="number" formControlName="yearsOfExpirience" />
+      <span
+        *ngIf="
+          !uploadJob.get('yearsOfExpirience').valid &&
+          uploadJob.get('yearsOfExpirience').touched
+        "
+      >
+        <span *ngIf="uploadJob.get('yearsOfExpirience').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+    <button type="submit" [disabled]="!uploadJob.valid">Post</button>
+  </form>
+</div>

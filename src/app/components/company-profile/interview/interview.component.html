@@ -1,0 +1,66 @@
+<div class="interviews" *ngIf="company">
+  <h1>Interview</h1>
+  <div class="interview" *ngFor="let interview of company.interviews">
+    <div class="hr-interview">
+      <h2>HR Interview</h2>
+      <p>{{ interview.hrInterview }}</p>
+    </div>
+    <div class="technical-interview">
+      <h2>Technical Interview</h2>
+      <p>
+        {{ interview.technicalInterview }}
+      </p>
+    </div>
+  </div>
+  <h2 class="expirience-title" *ngIf="displaySubmitBtn">
+    Tell Us your expirience
+  </h2>
+  <form
+    [formGroup]="interviewForm"
+    *ngIf="displaySubmitBtn"
+    (ngSubmit)="submitForm()"
+  >
+    <div class="input-container">
+      <label for="">HR interview</label>
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="hr"
+      ></textarea>
+      <span
+        *ngIf="
+          !interviewForm.get('hr').valid && interviewForm.get('hr').touched
+        "
+      >
+        <span *ngIf="interviewForm.get('hr').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+    <div class="input-container">
+      <label for="">Technical Interview</label>
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="technical"
+      ></textarea>
+      <span
+        *ngIf="
+          !interviewForm.get('technical').valid &&
+          interviewForm.get('technical').touched
+        "
+      >
+        <span *ngIf="interviewForm.get('technical').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+    <button type="submit" [disabled]="!interviewForm.valid" class="submit-btn">
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,127 @@
+<app-header-feed></app-header-feed>
+<div class="container">
+  <div class="profile-left">
+    <div class="profie-left-container">
+      <div class="profile-img">
+        <img
+          *ngIf="developer && developer.image"
+          [src]="developer.image"
+          alt="profileimg"
+        />
+      </div>
+      <div
+        #addImage
+        *ngIf="enableImageAndOfferEdditing"
+        class="add-image-suggestion"
+      >
+        <p>Add your image</p>
+        <input
+          type="file"
+          accept="image/x-png,image/image/jpeg"
+          (change)="onFileSelectedListener($event)"
+        />
+      </div>
+      <div class="name-and-about">
+        <h1 *ngIf="developer" class="developer-name">
+          {{ developer.firstName }} {{ developer.lastName }}
+        </h1>
+        <!-- <p class="short-about">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis archite
+        </p> -->
+      </div>
+      <div class="dashboard-links" *ngIf="developer">
+        <ul>
+          <li><i class="fas fa-user"></i><a routerLink="about">About</a></li>
+          <li>
+            <i class="fas fa-file-alt"></i
+            ><a routerLink="job-applications">
+              <span class="link-inner"
+                >Job Applications
+                <span *ngIf="developer.jobAplications"
+                  ><p>({{ developer.jobAplications.length }})</p></span
+                >
+              </span></a
+            >
+          </li>
+          <li>
+            <i class="far fa-bookmark"></i
+            ><a routerLink="saved-jobs">
+              <span class="link-inner"
+                >Saved Job Postings
+                <span *ngIf="developer.savedJobs"
+                  ><p>({{ developer.savedJobs.length }})</p></span
+                >
+              </span>
+            </a>
+          </li>
+          <li *ngIf="removeOffers">
+            <i class="fas fa-envelope"></i
+            ><a routerLink="offers">
+              <span class="link-inner"
+                >Offers
+                <span *ngIf="developer.offers"
+                  ><p>({{ developer.offers.length }})</p></span
+                >
+              </span></a
+            >
+          </li>
+          <li>
+            <i class="fas fa-industry"></i
+            ><a routerLink="companies-follow">
+              <span class="link-inner"
+                >Companies
+                <span *ngIf="developer.followCompanies"
+                  ><p>({{ developer.followCompanies.length }})</p></span
+                >
+              </span></a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="log-out">
+        <i class="fas fa-sign-out-alt"></i>
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+  <div class="profile-right">
+    <div class="navbar-for-smaller">
+      <div class="links">
+        <a routerLink="about">About</a
+        ><a routerLink="job-applications">Job Applications</a>
+        <a routerLink="saved-jobs">Saved Jobs</a
+        ><a routerLink="offers" *ngIf="removeOffers">Offers</a>
+        <a routerLink="companies">Companies</a>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<div class="offer" *ngIf="!enableImageAndOfferEdditing">
+  <button (click)="offer()">Send a offer</button>
+</div>
+<div class="offer-form" #offerFormGroup>
+  <form [formGroup]="offerForm" (ngSubmit)="sendOffer()">
+    <div class="form-control">
+      <label for="">Send Offer</label>
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="offer"
+      ></textarea>
+      <span
+        *ngIf="!offerForm.get('offer').valid && offerForm.get('offer').touched"
+      >
+        <span *ngIf="offerForm.get('offer').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+    <button type="submit" [disabled]="!offerForm.valid">Send</button>
+  </form>
+  <button class="remove" (click)="removeOfferForm()">
+    <i class="fas fa-times"></i>
+  </button>
+</div>

@@ -1,0 +1,63 @@
+<a routerLink="/home" class="home">Dev Jobs</a>
+
+<div class="container">
+  <form [formGroup]="registerCompany" id="form" (ngSubmit)="submit()">
+    <div class="form-control">
+      <label for="">Company Name</label>
+      <input
+        type="text"
+        id="input"
+        autocomplete="off"
+        formControlName="companyName"
+      />
+    </div>
+    <div class="form-control">
+      <label for="">Email</label>
+      <input
+        type="email"
+        id="input"
+        autocomplete="off"
+        formControlName="email"
+      />
+      <span
+        *ngIf="
+          !registerCompany.get('email').valid &&
+          registerCompany.get('email').touched
+        "
+      >
+        <span *ngIf="registerCompany.get('email').errors['required']">
+          <p>This field is required</p>
+        </span>
+        <span *ngIf="registerCompany.get('email').errors['email']">
+          <p>Invalid email</p>
+        </span>
+      </span>
+    </div>
+    <div class="form-control">
+      <label for="">Password</label>
+      <input
+        type="password"
+        id="input"
+        autocomplete="off"
+        formControlName="password"
+      />
+      <span *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p></span
+      >
+      <span
+        *ngIf="
+          !registerCompany.get('password').valid &&
+          registerCompany.get('password').touched
+        "
+      >
+        <span *ngIf="registerCompany.get('password').errors['required']">
+          <p>This field is required</p>
+        </span>
+        <span *ngIf="registerCompany.get('password').errors['minlength']"
+          ><p>Invalid password</p></span
+        >
+      </span>
+    </div>
+    <button type="submit" [disabled]="!registerCompany.valid">Submit</button>
+  </form>
+</div>

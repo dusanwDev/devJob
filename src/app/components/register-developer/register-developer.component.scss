@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import "../styles/confugire";
+
+:root {
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-color: $bodyBackground;
+}
+header {
+  padding: 1em 0;
+  text-align: center;
+  h1 {
+    color: white;
+  }
+}
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  form {
+    #stack-input {
+      margin-top: 0.4em;
+    }
+
+    label {
+      display: inline-block;
+      color: white;
+      margin-bottom: 0.5em;
+      font-size: 1.1rem;
+    }
+    input {
+      display: block;
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 1.2rem;
+      padding: 0.3em 0.6em;
+      border-radius: 5px;
+    }
+
+    .first-and-last {
+      display: flex;
+    }
+    .first-and-last {
+      margin-bottom: 1rem;
+      .form-control:nth-child(2) {
+        margin-left: 1rem;
+      }
+    }
+    .form-control:nth-child(1),
+    .form-control:nth-child(2) {
+      margin: 0;
+    }
+    .form-control {
+      margin: 1rem 0;
+    }
+    button {
+      display: block;
+      width: 100%;
+      border: none;
+      outline: none;
+      background-color: blue;
+      font-size: 1.3rem;
+      color: white;
+      padding: 0.3em 0;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .form-control.email {
+      margin-bottom: 1rem;
+    }
+  }
+}
+#form.ng-invalid {
+  button {
+    background-color: rgb(83, 83, 255);
+  }
+}
+#form.ng-valid {
+  button {
+    background-color: blue;
+  }
+}
+#input.ng-valid.ng-touched {
+  border: 3px solid green;
+}
+#input.ng-invalid.ng-touched {
+  border: 3px solid red;
+}
+span {
+  p {
+    color: red;
+  }
+}
+.home {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 1.6rem;
+  text-decoration: none;
+  font-weight: bolder;
+}
+@media screen and (max-width: 545px) {
+  form {
+    width: 95%;
+    margin: 0 auto;
+  }
+}

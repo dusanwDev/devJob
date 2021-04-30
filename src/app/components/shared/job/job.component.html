@@ -1,0 +1,42 @@
+<div class="jobs-container">
+  <div class="job" *ngFor="let job of jobs; let i = index">
+    <!-- [ngStyle]="{ margin: i % 2 == 0 ? '0.5em' : '0em' }" -->
+    <div class="job-title">
+      <div class="company-img">
+        <img [src]="job.companyPicture" alt="" />
+      </div>
+      <h3>{{ job.position }}</h3>
+    </div>
+    <div class="job-info">
+      <p class="job-desc">{{ job.shortDescription }}...</p>
+      <ul>
+        <li>
+          <a href="">{{ job.employment }}</a>
+        </li>
+        <li class="middle">
+          <a href="">{{ job.seniority }}</a>
+        </li>
+        <li>
+          <a href="">{{ job.yearsOfExpirience }}Y of exp</a>
+        </li>
+      </ul>
+    </div>
+    <div class="apply-or-save" *ngIf="displayJobInfoAndSaveBtns">
+      <button
+        class="apply-now"
+        (click)="displayJobDescription(job)"
+        [ngStyle]="{
+          width: displayJobInfoAndSaveBtns && displaySaveBtn ? '48%' : '100%'
+        }"
+      >
+        Job Info</button
+      ><button class="save" (click)="save(job)" *ngIf="displaySaveBtn">
+        Save
+      </button>
+    </div>
+    <button class="remove" (click)="remove(i, job)" *ngIf="displayRemovebtn">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>
+<app-job-description></app-job-description>

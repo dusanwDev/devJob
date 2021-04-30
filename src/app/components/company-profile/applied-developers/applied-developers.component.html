@@ -1,0 +1,27 @@
+<div class="jobs-container" *ngIf="developers">
+  <div class="job" *ngFor="let developer of developers; let i = index">
+    <!-- [ngStyle]="{ margin: i % 2 == 0 ? '0.5em' : '0em' }" -->
+    <div class="job-title">
+      <div class="company-img">
+        <img [src]="developer.image" alt="No image" />
+      </div>
+      <h3>{{ developer.firstName }} {{ developer.lastName }}</h3>
+    </div>
+    <div class="job-info" *ngIf="developer.shortCoverLetter">
+      <p class="job-desc">
+        {{ developer.shortCoverLetter }}
+      </p>
+    </div>
+
+    <div class="apply-or-save">
+      <a
+        [routerLink]="['/developer', developer.developerId, 'about']"
+        class="apply-now"
+        >View profile</a
+      >
+    </div>
+    <button class="remove" (click)="remove()" *ngIf="displayRemoveBtn">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>

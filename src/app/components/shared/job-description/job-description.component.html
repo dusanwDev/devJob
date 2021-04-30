@@ -1,0 +1,69 @@
+<div class="job-description" #jobDesc>
+  <div class="job-description-inner" #jobInner>
+    <div class="banner" *ngIf="jobEmited">
+      <div class="job-desc-img">
+        <img [src]="jobEmited.companyPicture" alt="" />
+      </div>
+      <button (click)="remove()"><i class="fas fa-times"></i></button>
+      <div class="button-apply">
+        <button (click)="apply(applyAlert)" *ngIf="removeApplyBtn">
+          Apply Now
+        </button>
+      </div>
+      <header class="job-desc-header" *ngIf="jobEmited">
+        <div class="header-left">
+          <h2>{{ jobEmited.position }}</h2>
+          <p>
+            <span
+              ><a [routerLink]="['/company', jobEmited.companyId]">{{
+                jobEmited.companyName
+              }}</a>
+            </span>
+            {{ jobEmited.city }},
+            {{ jobEmited.country }}
+          </p>
+        </div>
+        <div class="header-right">
+          <p *ngIf="datePosted">Job Posted: {{ datePosted }}</p>
+        </div>
+      </header>
+      <div class="job-desc-table" *ngIf="jobEmited">
+        <div class="expirience">
+          <p>Expirience</p>
+          <p class="length">{{ jobEmited.yearsOfExpirience }} Years</p>
+        </div>
+        <div class="work-level">
+          <p>Seniority</p>
+          <p class="length">{{ jobEmited.seniority }}</p>
+        </div>
+        <div class="employee-type">
+          <p>Employee Type</p>
+          <p class="length">{{ jobEmited.employment }}</p>
+        </div>
+        <div class="salary">
+          <p>Sallary</p>
+          <p class="length">{{ jobEmited.salary | currency }}</p>
+        </div>
+      </div>
+      <div class="overview" *ngIf="jobEmited">
+        <h4>Overview</h4>
+        <p>
+          {{ jobEmited.jobDescription }}
+        </p>
+      </div>
+      <div class="requirements" *ngIf="jobEmited">
+        <h4>Technologies</h4>
+        <ul>
+          <li *ngFor="let techologies of jobEmited.technology">
+            <i class="far fa-circle"></i>
+            <p>{{ techologies }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div #applyAlert class="applied-alert">
+  <h2>Applied</h2>
+</div>

@@ -1,0 +1,88 @@
+<app-header-feed></app-header-feed>
+<div class="container">
+  <div class="profile-left" *ngIf="company">
+    <div class="profie-left-container">
+      <div class="profile-img">
+        <img *ngIf="company.image" [src]="company.image" alt="profileimg" />
+      </div>
+      <div
+        #addImage
+        *ngIf="enableImageAndOfferEdditing"
+        class="add-image-suggestion"
+      >
+        <p>Add your image</p>
+        <input
+          style="color: white"
+          type="file"
+          accept="image/x-png,image/gif,image/jpeg"
+          (change)="onFileSelectedListener($event)"
+        />
+      </div>
+      <div class="name-and-about">
+        <h1 class="developer-name">{{ company.companyName }}</h1>
+      </div>
+      <div class="dashboard-links">
+        <ul>
+          <li>
+            <i class="fas fa-industry"></i><a routerLink="about">About</a>
+          </li>
+
+          <li>
+            <i class="fas fa-comments"></i
+            ><a routerLink="comments">
+              <span class="link-inner"
+                >Comments
+                <p *ngIf="company.comments">({{ company.comments.length }})</p>
+              </span></a
+            >
+          </li>
+          <li>
+            <i class="fas fa-hand-pointer"></i
+            ><a routerLink="interviews">
+              <span class="link-inner"
+                >Interviews
+                <span *ngIf="company.interviews"
+                  ><p>({{ company.interviews.length }})</p></span
+                >
+              </span></a
+            >
+          </li>
+          <li>
+            <i class="fas fa-user"></i
+            ><a routerLink="jobs-company"
+              >Jobs
+              <span *ngIf="company.jobs">({{ company.jobs.length }})</span>
+            </a>
+          </li>
+          <li>
+            <i class="fas fa-user"></i
+            ><a routerLink="applied-developers"
+              >Applied Developers
+              <span *ngIf="company.appliedDevelopers"
+                >({{ company.appliedDevelopers.length }})</span
+              >
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="log-out">
+        <i style="color: white" class="fas fa-sign-out-alt"></i>
+        <button>Logout</button>
+      </div>
+    </div>
+  </div>
+  <div class="profile-right">
+    <div class="navbar-for-smaller">
+      <div class="links">
+        <a routerLink="about">About</a><a routerLink="comments">Comments</a>
+        <a routerLink="interviews">Interviews</a
+        ><a routerLink="jobs-company">Jobs</a>
+        <a routerLink="applied-developers">Applied Developers</a>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+    <div class="follow" *ngIf="!enableImageAndOfferEdditing">
+      <button (click)="followClick()">Follow</button>
+    </div>
+  </div>
+</div>

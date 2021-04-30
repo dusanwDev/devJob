@@ -1,0 +1,120 @@
+<app-header-feed></app-header-feed>
+<!-- <p *ngFor="let job of jobs.technology">{{ job }}</p> -->
+<section class="search-bar">
+  <form [formGroup]="formCompany" (ngSubmit)="search()">
+    <div class="input-container">
+      <select name="" id="" formControlName="position">
+        <option value="Front-end-developer">Front-end-developer</option>
+        <option value="Back-end-developer">Back-end-developer</option>
+        <option value="Full-stack-developer">Full-stack-developer</option>
+        <option value="Android Developer">Android Developer</option>
+        <option value="UI/UX Designer">UI/UX Designer</option>
+        <option value="Data Scientist">Data Scientist</option>
+      </select>
+
+      <i class="fas fa-wrench"></i>
+    </div>
+    <div class="input-container">
+      <select name="" formControlName="employment" id="">
+        <option value="Full Time">Full Time</option>
+        <option value="Part Time">Part Time</option>
+        <option value="Remote">Remote</option>
+        <option value="Internship">Internship</option>
+      </select>
+    </div>
+    <div class="input-container">
+      <select name="" id="" formControlName="seniority">
+        <option value="Student Level">Student Level</option>
+        <option value="Entry Level">Entry Level</option>
+        <option value="Junior">Junior</option>
+        <option value="Medior">Medior</option>
+        <option value="Senior">Senior</option>
+      </select>
+      <i class="fas fa-user"></i>
+    </div>
+
+    <button type="submit">Search</button>
+  </form>
+</section>
+<h1 *ngIf="filtered.length === 0">
+  Showing {{ developers.length }} developers
+</h1>
+<div class="jobs-container" *ngIf="filtered.length === 0">
+  <div class="job" *ngFor="let developer of developers; let i = index">
+    <!-- [ngStyle]="{ margin: i % 2 == 0 ? '0.5em' : '0em' }" -->
+    <div class="job-title">
+      <div class="company-img">
+        <img [src]="developer.image" alt="Dev img" />
+      </div>
+
+      <h3>{{ developer.firstName }} {{ developer.lastName }}</h3>
+    </div>
+    <div class="job-info">
+      <p class="job-desc">
+        {{ developer.shortCoverLetter }}
+      </p>
+      <ul>
+        <li>
+          <a href="">{{ developer.position }}</a>
+        </li>
+        <li class="middle">
+          <a href="">{{ developer.seniority }}</a>
+        </li>
+        <li>
+          <a href="">{{ developer.employment }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="apply-or-save">
+      <a
+        [routerLink]="['/developer', developer.developerId, 'about']"
+        class="apply-now"
+        >View profile</a
+      >
+    </div>
+    <button class="remove" *ngIf="displayRemoveBtn" (click)="remove()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>
+<h1 *ngIf="filtered.length > 0">Showing {{ filtered.length }} developers</h1>
+<div class="jobs-container" *ngIf="filtered.length > 0">
+  <div class="job" *ngFor="let developer of filtered; let i = index">
+    <!-- [ngStyle]="{ margin: i % 2 == 0 ? '0.5em' : '0em' }" -->
+    <div class="job-title">
+      <div class="company-img">
+        <img [src]="developer.image" alt="Dev img" />
+      </div>
+
+      <h3>{{ developer.firstName }} {{ developer.lastName }}</h3>
+    </div>
+    <div class="job-info">
+      <p class="job-desc">
+        {{ developer.shortCoverLetter }}
+      </p>
+      <ul>
+        <li>
+          <a href="">{{ developer.position }}</a>
+        </li>
+        <li class="middle">
+          <a href="">{{ developer.seniority }}</a>
+        </li>
+        <li>
+          <a href="">{{ developer.employment }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="apply-or-save">
+      <a
+        [routerLink]="['/developer', developer.developerId, 'about']"
+        class="apply-now"
+        >View profile</a
+      >
+    </div>
+    <button class="remove" *ngIf="displayRemoveBtn" (click)="remove()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>

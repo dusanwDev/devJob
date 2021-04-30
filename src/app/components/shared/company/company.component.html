@@ -1,0 +1,23 @@
+<div class="companies">
+  <div class="job" *ngFor="let company of companies; let i = index">
+    <div class="job-title">
+      <div class="company-img">
+        <img [src]="company.image" alt="" />
+      </div>
+      <h3>{{ company.companyName }}</h3>
+    </div>
+    <div class="job-info">
+      <p>
+        {{ company.abutUsShorted }}
+      </p>
+    </div>
+    <div class="apply-or-follow">
+      <a
+        class="apply-now"
+        [routerLink]="['/company', company.companyId, 'about']"
+        >View</a
+      >
+      <!-- <button class="apply-now">View</button> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,190 @@
+<!-- <p *ngFor="let job of jobs.technology">{{ job }}</p> -->
+<section class="search-bar">
+  <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <div class="form-upper">
+      <div class="input-container" *ngIf="jobs.length > 0">
+        <select name="" id="" formControlName="technology">
+          <option
+            [value]="tech"
+            *ngFor="let tech of technologies; let i = index"
+          >
+            {{ tech }}
+          </option>
+        </select>
+
+        <i class="fas fa-wrench"></i>
+      </div>
+      <div class="input-container">
+        <select name="" id="" formControlName="city">
+          <option [value]="city" *ngFor="let city of city; let i = index">
+            {{ city }}
+          </option>
+        </select>
+
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+      <div class="input-container">
+        <select name="" id="" formControlName="companyName">
+          <option
+            [value]="company"
+            *ngFor="let company of companyNames; let i = index"
+          >
+            {{ company }}
+          </option>
+        </select>
+
+        <i class="fas fa-industry"></i>
+      </div>
+    </div>
+    <div class="form-lower">
+      <div class="input-container">
+        <select name="" formControlName="employment" id="">
+          <option value="Full Time">Full Time</option>
+          <option value="Part Time">Part Time</option>
+          <option value="Remote">Remote</option>
+          <option value="Internship">Internship</option>
+        </select>
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="input-container">
+        <select name="" id="" formControlName="seniority">
+          <option value="Student Level">Student Level</option>
+          <option value="Entry Level">Entry Level</option>
+          <option value="Junior">Junior</option>
+          <option value="Medior">Medior</option>
+          <option value="Senior">Senior</option>
+        </select>
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+
+      <button type="submit">Search</button>
+    </div>
+  </form>
+</section>
+<div class="job-postings">
+  <div class="jobs">
+    <header class="header-jobs">
+      <h1 *ngIf="filtered.length === 0">Showing {{ jobs.length }} jobs</h1>
+      <h1 *ngIf="filtered.length > 0">Showing {{ filtered.length }} jobs</h1>
+
+      <div class="sort">
+        <p>Sort by:</p>
+       
+        <form >
+          <select #sortSalaries (change)="mySelectHandler(sortSalaries.value)">
+            <option value="Newest">Newest</option>
+            <option value="Odlest">Odlest</option>
+            <option value="Highest Paid">Highest Paid</option>
+            <option value="Lowest Paid">Lowest Paid</option>
+          </select>
+        </form>
+      </div>
+    </header>
+    <h1 *ngIf="showMessage && filtered.length === 0" style="color: white">
+      Job not found. This is what we have:
+    </h1>
+    <div class="jobs-main" *ngIf="filtered.length === 0; else filteredARR">
+      <app-job [jobs]="jobs"></app-job>
+    </div>
+    <ng-template #filteredARR>
+      <div class="jobs-filtered">
+        <app-job [jobs]="filtered"></app-job>
+      </div>
+    </ng-template>
+    <!-- <div class="jobs-container" *ngIf="filtered.length > 0">
+      <app-job [jobs]="filtered"></app-job>
+    </div> -->
+  </div>
+</div>
+<!-- <div class= "job-description">
+      <div class="banner">
+        <div class="job-desc-img">
+          <img
+            src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt=""
+          />
+        </div>
+        <button><i class="fas fa-times"></i></button>
+      </div>
+      <header class="job-desc-header">
+        <div class="header-left">
+          <h2>UI/UX Designer</h2>
+          <p>
+            <span class="company-name-job"><a href="">Google</a></span
+            >Belgrade, Serbia
+          </p>
+        </div>
+        <div class="header-right">
+          <button>
+            <i class="fas fa-heart"></i>
+          </button>
+          <p><span> Posted 9 days ago</span> 98 Applicants</p>
+        </div>
+      </header>
+      <div class="job-desc-table">
+        <div class="expirience">
+          <p>Expirience</p>
+          <p class="length">Minimum 1 year</p>
+        </div>
+        <div class="work-level">
+          <p>Work Level</p>
+          <p class="length">Minimum 1 year</p>
+        </div>
+        <div class="employee-type">
+          <p>Employee Type</p>
+          <p class="length">Minimum 1 year</p>
+        </div>
+        <div class="salary">
+          <p>Sallary</p>
+          <p class="length">Minimum 1 year</p>
+        </div>
+      </div>
+      <div class="overview">
+        <h4>Ovverview</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo vel
+          impedit atque ad inventore quae rem necessitatibus laudantium
+          repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+          illo vel impedit atque ad inventore quae rem necessitatibus laudantium
+          repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+          illo vel impedit atque ad inventore quae rem necessitatibus laudantium
+          repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+          illo vel impedit atque ad inventore quae rem necessitatibus laudantium
+          repellat! Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+          illo vel impedit atque ad inventore quae rem necessitatibus laudantium
+          repellat!
+        </p>
+      </div>
+      <div class="requirements">
+        <h4>Job Description</h4>
+        <ul>
+          <li>
+            <i class="far fa-circle"></i>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </li>
+          <li>
+            <i class="far fa-circle"></i>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </li>
+          <li>
+            <i class="far fa-circle"></i>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </li>
+          <li>
+            <i class="far fa-circle"></i>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </li>
+          <li>
+            <i class="far fa-circle"></i>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </li>
+          <li>
+            <i class="far fa-circle"></i>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="button-apply">
+        <button>Apply Now</button>
+      </div>
+    </div> -->

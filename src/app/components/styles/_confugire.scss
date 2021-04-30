@@ -1,0 +1,103 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+@mixin flex($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: $direction;
+}
+@mixin interviewsandComments {
+  h1 {
+    margin-bottom: 1rem;
+  }
+  .expirience-title {
+    margin-top: 1rem;
+  }
+  h1,
+  h2 {
+    color: $tagColor;
+  }
+  form {
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      color: $tagColor;
+      margin-top: 1rem;
+      label {
+        font-size: 1.2rem;
+        margin-bottom: 0.4em;
+      }
+      textarea {
+        resize: none;
+        outline: none;
+        font-family: "Roboto", "sans-serif";
+        padding: 0.4em 0.8em;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+    button {
+      display: block;
+      width: 100%;
+      background-color: blue;
+      color: $tagColor;
+      margin-top: 0.4em;
+      border: none;
+      outline: none;
+      height: 30px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      border-radius: 5px;
+    }
+  }
+}
+@mixin InterviewAndComment {
+  background-color: #37354d;
+  padding: 0.4em 0.8em;
+  border-radius: 5px;
+
+  h2 {
+    color: $tagColor;
+  }
+  p {
+    color: $paragraphInterview;
+  }
+  .positive,
+  .negative,
+  .technical-interview,
+  .hr-interview {
+    h2 {
+      margin-bottom: 0.25em;
+    }
+  }
+  .negative,
+  .technical-interview {
+    margin-top: 0.9em;
+  }
+}
+$bodyBackground: #040406;
+$secondaryColor: #37354d;
+$grey: #454d55;
+$clickColor: #143be1;
+$buttonbackground: #0121fb;
+$fontColor: #b0a5a6;
+$tagColor: #f4f4f5;
+$buttonFont: #f4f4f5;
+// $job-descriptionParagraph:;
+$linkColorCompanyInfo: rgb(221, 221, 221);
+$paragraphCompany: rgb(201, 201, 201);
+$paragraphInterview: #ececec;
+$profile-leftColor: rgb(221, 221, 221);
+$save-btn: #484661;
+$accept-btn: green;
+$reject-btn: red;
+$backgroundColor: #1f1d2b;

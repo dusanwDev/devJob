@@ -1,0 +1,67 @@
+<div class="comments" *ngIf="company">
+  <h1>Comments</h1>
+  <div class="comment" *ngFor="let comment of company.comments">
+    <div class="positive">
+      <h2>Positive</h2>
+      <p>
+        {{ comment.positive }}
+      </p>
+    </div>
+    <div class="negative">
+      <h2>Negative</h2>
+      <p>
+        {{ comment.negative }}
+      </p>
+    </div>
+  </div>
+  <h2 class="expirience-title" *ngIf="displaySubmitBtn">
+    Tell Us your expirience
+  </h2>
+  <form
+    [formGroup]="commentsForm"
+    *ngIf="displaySubmitBtn"
+    (ngSubmit)="submitForm()"
+  >
+    <div class="input-container">
+      <label for="">Positive</label>
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="positive"
+      ></textarea>
+      <span
+        *ngIf="
+          !commentsForm.get('positive').valid &&
+          commentsForm.get('positive').touched
+        "
+      >
+        <span *ngIf="commentsForm.get('positive').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+    <div class="input-container">
+      <label for="">Negative</label>
+      <textarea
+        name=""
+        id=""
+        cols="30"
+        rows="10"
+        formControlName="negative"
+      ></textarea>
+      <span
+        *ngIf="
+          !commentsForm.get('negative').valid &&
+          commentsForm.get('negative').touched
+        "
+      >
+        <span *ngIf="commentsForm.get('negative').errors['required']">
+          <p>This field is required</p>
+        </span>
+      </span>
+    </div>
+    <button type="submit" class="submit-btn">Submit</button>
+  </form>
+</div>

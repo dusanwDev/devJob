@@ -1,0 +1,32 @@
+@import "../../styles/confugire";
+.saved-jobs {
+  header {
+    padding-left: 0.8rem;
+    padding-top: 0.8em;
+    color: $tagColor;
+    margin: 1em 0;
+  }
+  .jobs-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+}
+@media screen and (max-width: 894px) {
+  .saved-jobs {
+    width: 100%;
+
+    .jobs-container {
+      .job {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 425px) {
+//   .profile-left {
+//     width: 100%;
+//   }
+// }

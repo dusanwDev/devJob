@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import "app/components/styles/confugire";
+// body {
+//   background-color: $bodyBackground;
+// }
+:root {
+  font-family: "Roboto", "sans-serif";
+  background-color: $backgroundColor;
+}

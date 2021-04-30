@@ -1,0 +1,79 @@
+<div class="search-bar">
+  <form [formGroup]="companiesForm" (ngSubmit)="search()">
+    <div class="input-search">
+      <input
+        type="text"
+        placeholder="Company Name"
+        formControlName="companyName"
+      />
+      <!-- <i class="fas fa-map-marker-alt"></i> -->
+      <button type="submit">Search</button>
+    </div>
+    <!-- <div
+      class="search-result"
+      *ngFor="let company of companies | search: input"
+    >
+      {{ company.companyName }}
+    </div> -->
+    <div class="filters">
+      <div class="input-container">
+        <select name="" id="" formControlName="city">
+          <option [value]="city" *ngFor="let city of city">
+            {{ city }}
+          </option>
+        </select>
+        <i class="fas fa-map-marker-alt"></i>
+      </div>
+      <div class="input-container">
+        <select name="" id="" formControlName="employees">
+          <option value="50">20 - 50</option>
+          <option value="100">50 - 100</option>
+          <option value="300">100 - 300</option>
+          <option value="500">300 - 500</option>
+          <option value="700">500 - 700</option>
+          <option value="1000">700 - 1000</option>
+        </select>
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="input-container">
+        <select name="" id="" formControlName="salary">
+          <option value="600">400$ - 600$</option>
+          <option value="800">600$ - 800$</option>
+          <option value="1200">800$ - 1200$</option>
+          <option value="1400">1200$ - 1400$</option>
+          <option value="1600">1400$ - 1600$</option>
+          <option value="10000">1600$ +</option>
+        </select>
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <!-- <div class="input-container">
+        <select name="" id="" formControlName="raiting">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <i class="fas fa-star"></i>
+      </div> -->
+    </div>
+  </form>
+</div>
+
+<main>
+  <header>
+    <h1 *ngIf="filtered.length > 0">Showing {{ filtered.length }} companies</h1>
+    <h1 *ngIf="filtered.length === 0">
+      Showing {{ companies.length }} companies
+    </h1>
+  </header>
+  <h1 *ngIf="showMessage && filtered.length === 0" style="color: white">
+    Company not found. This is what we have:
+  </h1>
+  <div class="companies" *ngIf="filtered.length === 0">
+    <app-company [companies]="companies"></app-company>
+  </div>
+  <div class="companies" *ngIf="filtered.length > 0">
+    <app-company [companies]="filtered"></app-company>
+  </div>
+</main>

@@ -1,0 +1,218 @@
+<div class="info">
+  <h1 class="class-name">Company Name</h1>
+  <h1>Company Info</h1>
+  <header>
+    <h2 class="lang-header">Languages</h2>
+    <button class="add" *ngIf="displayRemoveLang" (click)="edit(languages)">
+      <i class="fas fa-plus"></i>
+    </button>
+  </header>
+  <div class="language-icons" *ngIf="company">
+    <ul>
+      <li *ngFor="let lang of company.languages; let i = index">
+        <i style="color: rgb(94, 94, 255)" [class]="lang"></i>
+        <button *ngIf="displayRemoveLang" (click)="removeLang(i)">
+          <i class="fas fa-times"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <section class="about-us" *ngIf="company">
+    <header>
+      <h2>About us</h2>
+      <button (click)="edit(aboutUs)">
+        <i class="fas fa-plus"></i>
+      </button>
+    </header>
+    <div class="inner">
+      <p>
+        {{ company.aboutUs }}
+      </p>
+    </div>
+  </section>
+  <section class="what-we-do" *ngIf="company">
+    <header>
+      <h2>What we do</h2>
+      <button (click)="edit(whatWeDo)">
+        <i class="fas fa-plus"></i>
+      </button>
+    </header>
+    <div class="inner">
+      <p>
+        {{ company.whatWeDo }}
+      </p>
+    </div>
+  </section>
+  <section class="salary-range" *ngIf="company">
+    <header>
+      <h2>Salary range</h2>
+      <button (click)="edit(salaryRange)">
+        <i class="fas fa-plus"></i>
+      </button>
+    </header>
+    <div class="inner">
+      <p>{{ company.salaryRangeFrom }}$ - {{ company.salaryRangeTo }}$</p>
+    </div>
+  </section>
+  <section class="number-of-employees" *ngIf="company">
+    <header>
+      <h2>Number of employees</h2>
+      <button (click)="edit(numberOfEmployees)">
+        <i class="fas fa-plus"></i>
+      </button>
+    </header>
+    <div class="inner">
+      <p>{{ company.numberOfEmployees }}</p>
+    </div>
+  </section>
+  <section class="city" *ngIf="company">
+    <header>
+      <h2>City</h2>
+      <button (click)="edit(city)">
+        <i class="fas fa-plus"></i>
+      </button>
+    </header>
+    <div class="inner">
+      <p>{{ company.city }}</p>
+    </div>
+  </section>
+</div>
+<div #whatWeDo class="edit whatWeDo-edit">
+  <div class="form-container">
+    <form [formGroup]="whatWeDoForm" (ngSubmit)="submitWhatWeDo()">
+      <div class="form-control textarea">
+        <label for="">What We do</label
+        ><textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          formControlName="whatWeDo"
+        ></textarea>
+      </div>
+
+      <button class="submit">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(whatWeDo)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #aboutUs class="edit about-us-edit">
+  <div class="form-container">
+    <form [formGroup]="aboutUsForm" (ngSubmit)="submitAbout()">
+      <div class="form-control textarea">
+        <label for="">About Us</label
+        ><textarea
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          formControlName="aboutUs"
+        ></textarea>
+      </div>
+
+      <button class="submit">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(aboutUs)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+
+<div #salaryRange class="edit salaryRange-edit">
+  <div class="form-container">
+    <form [formGroup]="salaryRangeForm" (ngSubmit)="submitsalaryRange()">
+      <div class="form-control">
+        <label for="">From</label
+        ><input type="text" name="" id="" formControlName="salaryRangeFrom" />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+      </div>
+
+      <div class="form-control">
+        <label for="">To</label
+        ><input type="text" name="" id="" formControlName="salaryRangeTo" />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+      </div>
+      <button class="submit" [disabled]="!salaryRangeForm.valid">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(salaryRange)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #numberOfEmployees class="edit numberOfEmployees-edit">
+  <div class="form-container">
+    <form
+      [formGroup]="numberOfEmployeesForm"
+      (ngSubmit)="submitnumberOfEmployees()"
+    >
+      <div class="form-control textarea">
+        <label for="">Number of employees</label>
+        <!-- <select name="" id="" formControlName="numberOfEmployees">
+          <option value="50">20 - 50</option>
+          <option value="100">50 - 100</option>
+          <option value="300">100 - 300</option>
+          <option value="500">300 - 500</option>
+          <option value="700">500 - 700</option>
+          <option value="1000">700 - 1000</option>
+        </select> -->
+        <input type="number" formControlName="numberOfEmployees" />
+      </div>
+
+      <button class="submit" [disabled]="!numberOfEmployeesForm.valid">
+        Submit
+      </button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(numberOfEmployees)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #city class="edit city-edit">
+  <div class="form-container">
+    <form [formGroup]="cityForm" (ngSubmit)="submitCity()">
+      <div class="form-control textarea">
+        <label for="">City</label><input type="text" formControlName="city" />
+      </div>
+
+      <button class="submit" [disabled]="!cityForm.valid">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(city)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #languages class="edit seniority-edit">
+  <div class="form-container">
+    <form [formGroup]="labguagesForm" (ngSubmit)="submitLanguages()">
+      <div class="form-control control-cover">
+        <label for="">Languages</label>
+        <select name="" id="" formControlName="languages">
+          <option value="fab fa-js">JavaScript</option>
+          <option value="fab fa-angular">Angular</option>
+          <option value="fab fa-html5">HTML</option>
+          <option value="fab fa-css3-alt">CSS</option>
+          <option value="fab fa-php">PHP</option>
+          <option value="fab fa-react">React</option>
+
+          <option value="fab fa-python">Python</option>
+          <option value="fab fa-java">Java</option>
+          <option value="fab fa-rust">Rust</option>
+          <option value="fab fa-laravel">Laravel</option>
+          <option value="fab fa-sass">Sass</option>
+          <option value="fab fa-bootstrap">Bootstrap</option>
+          <option value="fas fa-database">Databases</option>
+        </select>
+      </div>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(languages)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>

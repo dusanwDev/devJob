@@ -1,0 +1,163 @@
+.jobs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  margin-bottom: 1rem;
+  button {
+    border: none;
+    outline: none;
+    padding: 0.3em 0.6em;
+    background-color: green;
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.upload-job {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: rgb(0, 0, 0, 0.8);
+  padding: 3em;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    button {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      svg {
+        font-size: 2rem;
+        color: white;
+        pointer-events: none;
+      }
+    }
+  }
+  form {
+    label {
+      color: white;
+    }
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      margin: 1em 0;
+      position: relative;
+      input {
+        border: none;
+        outline: none;
+        font-size: 1.2rem;
+        padding: 0.3em 0.3em;
+        border-radius: 4px;
+      }
+      select {
+        border: none;
+        outline: none;
+        padding: 0.3em 0.6em;
+      }
+
+      textarea {
+        border: none;
+        outline: none;
+        font-size: 1.2rem;
+        padding: 0.3em 0.3em;
+        font-family: "Roboto", "sans-serif";
+      }
+      .buttons-tech {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 0.5em;
+        button {
+          display: inline;
+          //   position: absolute;
+          //   right: 0;
+          //   bottom: 0;
+          width: auto;
+          padding: 0.3em 0.6em;
+        }
+        .add {
+          background-color: green;
+          margin-right: 0.3em;
+        }
+      }
+      span {
+        p {
+          color: red;
+          font-weight: 800;
+        }
+      }
+    }
+    .display-tech {
+      padding: 0.5rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: white;
+      .tech {
+        background-color: black;
+        display: flex;
+        align-items: center;
+        padding: 0.6em;
+        margin-left: 0.3em;
+        margin-top: 0.3em;
+        p {
+          color: white;
+          font-size: 1.1rem;
+        }
+        .remove {
+          background-color: red;
+          display: inline;
+          width: auto;
+          padding: 0 0.3em;
+          margin-left: 0.3em;
+          svg {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+    button {
+      padding: 0.3em 0;
+      border: none;
+      outline: none;
+      background-color: blue;
+      color: white;
+      display: block;
+      width: 100%;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+  form.ng-untouched.ng-invalid {
+    button {
+      background-color: rgb(136, 136, 136);
+    }
+  }
+  form.ng-touched.ng-invalid {
+    button {
+      background-color: rgb(136, 136, 136);
+    }
+  }
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}

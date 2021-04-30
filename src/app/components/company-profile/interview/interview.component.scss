@@ -1,0 +1,24 @@
+@import "../../styles/confugire";
+.interviews {
+  @include interviewsandComments();
+  .interview {
+    @include InterviewAndComment();
+    margin-top: 0.5rem;
+  }
+}
+form.ng-untouched.ng-invalid {
+  button {
+    background-color: rgb(103, 164, 255);
+  }
+}
+form.ng-touched.ng-invalid {
+  button {
+    background-color: rgb(201, 223, 255);
+  }
+}
+span {
+  p {
+    color: red;
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ng-complete-guide-c0062": {
+      "hosting": {
+        "job": [
+          "ng-complete-guide-c0062"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ng-complete-guide-c0062"
+  }
+}

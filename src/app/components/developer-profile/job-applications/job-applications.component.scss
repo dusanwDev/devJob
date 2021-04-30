@@ -1,0 +1,11 @@
+header {
+  h1 {
+    color: white;
+  }
+  margin: 1em 0;
+}
+.container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,501 @@
+<header class="section-header">
+  <h1>About</h1>
+</header>
+<h2>Skills</h2>
+<div class="language-icons" *ngIf="userData">
+  <ul>
+    <li *ngFor="let lang of userData.languages; let i = index">
+      <i style="color: rgb(110, 110, 255)" [class]="lang"></i>
+
+      <button *ngIf="displayRemoveLang" (click)="removeLang(i)">
+        <i class="fas fa-times"></i>
+      </button>
+    </li>
+  </ul>
+
+  <button class="add" *ngIf="displayRemoveLang" (click)="edit(languages)">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+<header class="header-about">
+  <h2>Education</h2>
+  <i style="display: none" class="fas fa-edit"></i>
+  <button (click)="edit(universityEdit)">
+    <i class="fas fa-plus"></i>
+  </button>
+</header>
+<div class="education">
+  <div class="education-container" *ngIf="userData">
+    <div
+      class="education-inner"
+      *ngFor="let education of userData.education; let i = index"
+      #educationInner
+    >
+      <div class="education-text">
+        <h3 style="color: white" class="company">
+          {{ education.university }}
+        </h3>
+        <p class="deegre-and-field-of-study">
+          {{ education.fieldOfStudy }},{{ education.degree }}
+        </p>
+        <p class="education-duration">
+          {{ education.startEducation }} - {{ education.endEducation }}
+        </p>
+      </div>
+      <div class="btn-delete">
+        <button (click)="delete(i, educationInner)">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<header class="header-about">
+  <h2>Work Expirience</h2>
+  <button (click)="edit(workEdit)">
+    <i class="fas fa-plus"></i>
+  </button>
+</header>
+<div class="work-expirience" *ngIf="userData">
+  <div class="work-expirience-container" *ngIf="userData.workExpirience">
+    <div
+      class="work-expirience-inner"
+      #workExpirienceInner
+      *ngFor="let workExpirience of userData.workExpirience; let i = index"
+    >
+      <div class="work-expirience-text">
+        <h3 style="color: white" class="company">
+          {{ workExpirience.company }}
+        </h3>
+        <p class="company-position">
+          {{ workExpirience.position }}
+        </p>
+        <p class="work-duration">
+          {{ workExpirience.start }} - {{ workExpirience.end }}
+        </p>
+      </div>
+      <div class="btn-delete">
+        <button (click)="delete(i, workExpirienceInner)">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<header class="header-about cover-about">
+  <h2>Cover Letter</h2>
+  <button (click)="edit(coverEdit)">
+    <i class="fas fa-plus"></i>
+  </button>
+</header>
+
+<header class="header-about cover-about">
+  <h2>Seniority</h2>
+  <button (click)="edit(seniority)">
+    <i class="fas fa-plus"></i>
+  </button>
+</header>
+<div class="userData" *ngIf="userData">
+  <p>{{ userData.seniority }}</p>
+</div>
+<header class="header-about cover-about">
+  <h2>Position</h2>
+  <button (click)="edit(position)">
+    <i class="fas fa-plus"></i>
+  </button>
+</header>
+<div class="userData" *ngIf="userData">
+  <p>{{ userData.position }}</p>
+</div>
+<header class="header-about cover-about">
+  <h2>Employmeent</h2>
+  <button (click)="edit(employment)">
+    <i class="fas fa-plus"></i>
+  </button>
+</header>
+<div class="userData" *ngIf="userData">
+  <p>{{ userData.employment }}</p>
+</div>
+<div class="cover-inner">
+  <p class="cover-latter" *ngIf="userData">
+    {{ userData.coverLetter }}
+  </p>
+</div>
+<div #universityEdit class="edit university-edit">
+  <div class="form-container">
+    <form [formGroup]="educationForm" (ngSubmit)="submitFormEducation()">
+      <div class="form-control">
+        <label for="">University</label
+        ><input
+          type="text"
+          formControlName="university"
+          autocomplete="off"
+          id="input"
+        />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+        <span
+          *ngIf="
+            !educationForm.get('university').valid &&
+            educationForm.get('university').touched
+          "
+        >
+          <span *ngIf="educationForm.get('university').errors['required']"
+            ><p>This field is required</p></span
+          >
+          <span
+            *ngIf="
+              educationForm.get('university').errors['inputCannotBeNumber']
+            "
+            ><p>input Cannot Be Number</p></span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Field of study</label
+        ><input
+          id="input"
+          type="text"
+          autocomplete="off"
+          formControlName="fieldOfStudy"
+        />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+        <span
+          *ngIf="
+            !educationForm.get('fieldOfStudy').valid &&
+            educationForm.get('fieldOfStudy').touched
+          "
+        >
+          <span *ngIf="educationForm.get('fieldOfStudy').errors['required']"
+            ><p>This field is required</p></span
+          >
+          <span
+            *ngIf="
+              educationForm.get('fieldOfStudy').errors['inputCannotBeNumber']
+            "
+            ><p>input Cannot Be Number</p></span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Degree</label
+        ><input
+          id="input"
+          type="text"
+          autocomplete="off"
+          formControlName="degree"
+        />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+        <span
+          *ngIf="
+            !educationForm.get('degree').valid &&
+            educationForm.get('degree').touched
+          "
+        >
+          <span *ngIf="educationForm.get('degree').errors['required']"
+            ><p>This field is required</p></span
+          >
+          <span
+            *ngIf="educationForm.get('degree').errors['inputCannotBeNumber']"
+            ><p>input Cannot Be Number</p></span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <div class="years-inner">
+          <div class="start">
+            <label for="">Start</label>
+            <input
+              id="input"
+              type="text"
+              formControlName="startEducation"
+              autocomplete="off"
+            />
+            <span *ngIf="errorMessageYearEducation">
+              <p>{{ errorMessageYearEducation }}</p>
+            </span>
+            <span
+              *ngIf="
+                !educationForm.get('startEducation').valid &&
+                educationForm.get('startEducation').touched
+              "
+            >
+              <span
+                *ngIf="educationForm.get('startEducation').errors['required']"
+                ><p>This field is required</p>
+              </span>
+              <span
+                *ngIf="
+                  educationForm.get('startEducation').errors[
+                    'inputCannotBeLetter'
+                  ]
+                "
+                ><p>Input Cannot Be Letter</p>
+              </span>
+            </span>
+          </div>
+
+          <div class="end">
+            <label for="">End</label
+            ><input
+              id="input"
+              type="text"
+              formControlName="endEducation"
+              autocomplete="off"
+            />
+            <span *ngIf="errorMessageYearEducation">
+              <p>{{ errorMessageYearEducation }}</p>
+            </span>
+            <span
+              *ngIf="
+                !educationForm.get('endEducation').valid &&
+                educationForm.get('endEducation').touched
+              "
+            >
+              <span *ngIf="educationForm.get('endEducation').errors['required']"
+                ><p>This field is required</p></span
+              ><span
+                *ngIf="
+                  educationForm.get('endEducation').errors[
+                    'inputCannotBeLetter'
+                  ]
+                "
+                ><p>Input Cannot Be Letter</p></span
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="!educationForm.valid">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(universityEdit)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #workEdit class="edit work-edit">
+  <div class="form-container">
+    <form [formGroup]="workForm" (ngSubmit)="submitWorkForm()">
+      <div class="form-control">
+        <label for="">Company</label
+        ><input
+          type="text"
+          id="input"
+          formControlName="company"
+          autocomplete="off"
+        />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+        <span
+          *ngIf="
+            !workForm.get('company').valid && workForm.get('company').touched
+          "
+        >
+          <span *ngIf="workForm.get('company').errors['required']"
+            ><p>This field is required</p></span
+          >
+          <span *ngIf="workForm.get('company').errors['inputCannotBeNumber']"
+            ><p>input Cannot Be Number</p></span
+          >
+        </span>
+      </div>
+      <div class="form-control">
+        <label for="">Position</label
+        ><input
+          type="text"
+          autocomplete="off"
+          id="input"
+          formControlName="position"
+          autocomplete="off"
+        />
+        <span *ngIf="errorMessage"
+          ><p>{{ errorMessage }}</p></span
+        >
+        <span
+          *ngIf="
+            !workForm.get('position').valid && workForm.get('position').touched
+          "
+        >
+          <span *ngIf="workForm.get('position').errors['required']"
+            ><p>This field is required</p></span
+          >
+          <span *ngIf="workForm.get('position').errors['inputCannotBeNumber']"
+            ><p>input Cannot Be Number</p></span
+          >
+        </span>
+      </div>
+      <div class="form-control years-employeed">
+        <label for="">Years Employeed</label>
+        <div class="years-inner">
+          <div class="start">
+            <label for="">Start</label>
+            <input
+              type="text"
+              formControlName="start"
+              id="input"
+              autocomplete="off"
+            />
+            <span *ngIf="errorMessageYearWork">
+              <p>{{ errorMessageYearWork }}</p>
+            </span>
+            <span
+              *ngIf="
+                !workForm.get('start').valid && workForm.get('start').touched
+              "
+            >
+              <span *ngIf="workForm.get('start').errors['required']"
+                ><p>This field is required</p></span
+              >
+              <span *ngIf="workForm.get('start').errors['inputCannotBeLetter']"
+                ><p>Input Cannot Be Letter</p></span
+              >
+            </span>
+          </div>
+          <div class="end">
+            <label for="">End</label
+            ><input
+              type="text"
+              formControlName="end"
+              id="input"
+              autocomplete="off"
+            />
+            <span *ngIf="errorMessageYearWork">
+              <p>{{ errorMessageYearWork }}</p>
+            </span>
+            <span
+              *ngIf="!workForm.get('end').valid && workForm.get('end').touched"
+            >
+              <span *ngIf="workForm.get('end').errors['required']"
+                ><p>This field is required</p></span
+              >
+              <span *ngIf="workForm.get('end').errors['inputCannotBeLetter']"
+                ><p>Input Cannot Be Letter</p></span
+              >
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <button class="remove" (click)="removeEdit(workEdit)">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>
+<div #coverEdit class="edit cover-edit">
+  <div class="form-container">
+    <form [formGroup]="coverLetterForm" (ngSubmit)="coverSubmit()">
+      <div class="form-control control-cover">
+        <label for="">Cover Letter</label
+        ><textarea
+          name=""
+          id=""
+          #textarea
+          cols="30"
+          rows="10"
+          formControlName="coverLetter"
+        ></textarea>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(coverEdit)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #position class="edit position-edit">
+  <div class="form-container">
+    <form [formGroup]="positionForm" (ngSubmit)="positionSubmit()">
+      <div class="form-control control-cover">
+        <label for="">Position</label>
+        <select name="" id="" formControlName="position">
+          <option value="Front-end-developer">Front-end-developer</option>
+          <option value="Back-end-developer">Back-end-developer</option>
+          <option value="Full-stack-developer">Full-stack-developer</option>
+          <option value="Android Developer">Android Developer</option>
+          <option value="UI/UX Designer">UI/UX Designer</option>
+          <option value="Data Scientist">Data Scientist</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(position)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #employment class="edit employment-edit">
+  <div class="form-container">
+    <form [formGroup]="employmentForm" (ngSubmit)="employmentSubmit()">
+      <div class="form-control control-cover">
+        <label for="">Employment</label>
+        <select name="" formControlName="employmeent" id="">
+          <option value="Full Time">Full Time</option>
+          <option value="Part Time">Part Time</option>
+          <option value="Remote">Remote</option>
+          <option value="Internship">Internship</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(employment)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #seniority class="edit seniority-edit">
+  <div class="form-container">
+    <form [formGroup]="seniorityForm" (ngSubmit)="senioritySubmit()">
+      <div class="form-control control-cover">
+        <label for="">Seniority</label>
+        <select name="" id="" formControlName="seniority">
+          <option value="Student Level">Student Level</option>
+          <option value="Entry Level">Entry Level</option>
+          <option value="Junior">Junior</option>
+          <option value="Medior">Medior</option>
+          <option value="Senior">Senior</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(seniority)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+<div #languages class="edit seniority-edit">
+  <div class="form-container">
+    <form [formGroup]="labguagesForm" (ngSubmit)="submitLanguages()">
+      <div class="form-control control-cover">
+        <label for="">Languages</label>
+        <select name="" id="" formControlName="languages">
+          <option value="fab fa-js">JavaScript</option>
+          <option value="fab fa-angular">Angular</option>
+          <option value="fab fa-html5">HTML</option>
+          <option value="fab fa-css3-alt">CSS</option>
+          <option value="fab fa-php">PHP</option>
+          <option value="fab fa-react">React</option>
+          <option value="fab fa-python">Python</option>
+          <option value="fab fa-java">Java</option>
+          <option value="fab fa-rust">Rust</option>
+          <option value="fab fa-laravel">Laravel</option>
+          <option value="fab fa-sass">Sass</option>
+          <option value="fab fa-bootstrap">Bootstrap</option>
+          <option value="fas fa-database">Databases</option>
+        </select>
+      </div>
+      <button type="submit">Add</button>
+    </form>
+  </div>
+  <button class="remove" (click)="removeEdit(languages)">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
