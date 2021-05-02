@@ -61,7 +61,7 @@ const routes: Routes = [
     path: 'register-company',
     component: RegisterCompanyComponent,
   },
-  { path: '**', component: ErrorComponent },
+  
 ];
 
 @NgModule({
