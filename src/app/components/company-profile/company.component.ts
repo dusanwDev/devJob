@@ -67,7 +67,6 @@ export class CompanyProfileComponent implements OnInit {
       _token;
     } = JSON.parse(localStorage.getItem(Utility.localStorageKey));
     if (user.userId !== this.companyPath) {
-      console.log(this.companyPath);
       return false;
     } else {
       return true;

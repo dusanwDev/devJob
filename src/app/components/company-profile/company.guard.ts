@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {
-  CanActivateChild,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
@@ -32,7 +31,6 @@ export class CompanyGuard implements CanActivate {
       .valueChanges()
       .pipe(
         map((data) => {
-          console.log('GUARD', data);
           if (typeof data !== 'undefined' && data.companyId) {
             return true;
           }

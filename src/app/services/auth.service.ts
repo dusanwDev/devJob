@@ -133,7 +133,6 @@ export class AuthService {
     localStorage.setItem(Utility.localStorageKey, JSON.stringify(user));
     this.developer.next(user);
     this.autoLogOut(expiresIn * 1000);
-    console.log(typeOfRegister);
 
     switch (typeOfRegister) {
       case 'companyRegister':
@@ -203,7 +202,6 @@ export class AuthService {
     if (!httpMessage.error) {
       return throwError(message);
     }
-    console.log(httpMessage.error.error.message);
     switch (httpMessage.error.error.message) {
       case 'EMAIL_EXISTS':
         message = 'Email exists';

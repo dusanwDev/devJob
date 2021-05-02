@@ -63,22 +63,14 @@ export class RegisterDeveloperComponent implements OnInit {
         this.registerDeveloperForm.get('password').value
       )
       .subscribe(
-        (data) => console.log(data),
+        (data) => console.log(),
 
         (error) => {
           this.errorMessage = error;
-          console.log('ERROR REGITSER');
         }
       );
-    // if (this.selectedFile.type === 'image/jpeg' || 'image/png') {
-    //   this.afsStorage.upload('M', this.selectedFile);}
-    // } else {
-    //   alert('FILE IS NOT A IMAGE');
-    // }
   }
   checkFiletype(formControl: FormControl): { [key: string]: boolean } {
-    console.log('IMG', formControl.value);
-
     if (this.selectedFile.type === 'image/jpeg' || 'image/png') {
       this.afsStorage.upload('M', this.selectedFile);
       return null;

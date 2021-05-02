@@ -82,7 +82,6 @@ export class JobsCompanyComponent implements OnInit {
     });
   }
   submit() {
-    console.log(this.uploadJob.get('seniority').value);
     if (typeof this.company.jobs === 'undefined') {
       this.company.jobs = [
         {
@@ -143,11 +142,6 @@ export class JobsCompanyComponent implements OnInit {
   }
   addTech() {
     let arr = this.uploadJob.get('technology').value.split(' ');
-    // this.techArr.push(arr);
-    // console.log('1', this.techArr);
-    // this.techArr = this.techArr.filter(
-    //   (v, i, a) => a.findIndex((t) => t === v) === i
-    // );
 
     return arr;
   }

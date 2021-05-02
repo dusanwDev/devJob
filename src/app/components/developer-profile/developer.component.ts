@@ -1,10 +1,4 @@
-import {
-  AfterViewChecked,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -73,7 +67,6 @@ export class DeveloperComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((paramsUrl) => {
       this.developerService.userIdFromParam.next(paramsUrl['developerid']);
-      console.log('AAAAAAAAAAAAAAAAAAAAAAA');
 
       this.afs
         .collection<Developer>(Utility.dataBase)
@@ -88,40 +81,11 @@ export class DeveloperComponent implements OnInit {
             });
         });
     });
-    // this.auth.developer.subscribe((devData) => {
-    //   this.afs
-    //     .collection<Developer>(Utility.dataBase)
-    //     .doc(devData._userId)
-    //     .valueChanges()
-    //     .subscribe((userData) => {
-    //       console.log('DEV LEFT', userData);
-    //       this.developer = userData;
-    //     });
-    // });
 
-    // .subscribe((data) =>
-    //   this.afs
-    //     .collection<Developer>(Utility.dataBase)
-    //     .doc(data)
-    //     .valueChanges()
-    //     .subscribe((userData) => {
-
-    //       console.log(this.developer);
-    //     })
-    // );
     this.offerForm = new FormGroup({
       offer: new FormControl(null, Validators.required),
     });
   }
-  // userData() {
-  //   const user: {
-  //     expdate: string;
-  //     refreshToken: string;
-  //     userId;
-  //     _token;
-  //   } = JSON.parse(localStorage.getItem(Utility.localStorageKey));
-  //   this.afs;
-  // }
 
   onFileSelectedListener(event) {
     this.selectedFile = <File>event.target.files[0];

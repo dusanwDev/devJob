@@ -115,7 +115,6 @@ export class JobsComponent implements OnInit {
   }
 
   mySelectHandler(event) {
-    console.log(event);
     switch (event) {
       case 'Highest Paid':
         this.filtered = this.jobs.sort((jobA, jobB) => {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { ErrorComponent } from './components/error/error.component';
 import { FeedCompanyComponent } from './components/feed-company/feed-company.component';
 import { FeedCompanyGuard } from './components/feed-company/feed-company.guard';
 import { CompaniesComponent } from './components/feed/companies/companies.component';
@@ -60,6 +61,7 @@ const routes: Routes = [
     path: 'register-company',
     component: RegisterCompanyComponent,
   },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

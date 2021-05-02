@@ -145,7 +145,6 @@ export class AboutProfileComponent implements OnInit {
       this.userData.languages = [];
       this.userData.languages.shift();
     }
-    console.log(this.userData.languages);
     this.userData.languages.push(this.labguagesForm.get('languages').value);
     this.userData.languages = this.userData.languages.filter(
       (v, i, a) => a.findIndex((t) => t === v) === i
@@ -187,8 +186,6 @@ export class AboutProfileComponent implements OnInit {
   }
 
   submitFormEducation() {
-    console.log('EDU 1', this.userData.education);
-
     if (typeof this.userData.education === 'undefined') {
       this.userData.education = [
         {
@@ -201,7 +198,6 @@ export class AboutProfileComponent implements OnInit {
       ];
       this.userData.education.shift();
     }
-    console.log('EDU', this.userData.education);
     let bool = true;
     this.errorMessage = '';
     this.userData.education.filter((edu) => {
@@ -323,10 +319,8 @@ export class AboutProfileComponent implements OnInit {
       });
   }
   delete(i: number, educationOrWorkExpirience: HTMLDivElement) {
-    console.log(educationOrWorkExpirience);
     if (educationOrWorkExpirience.classList.contains('education-inner')) {
       this.userData.education.splice(i, 1);
-      console.log(this.userData.education);
       this.afs
         .collection<Developer>(Utility.dataBase)
         .doc(this.userData.developerId)
@@ -336,9 +330,7 @@ export class AboutProfileComponent implements OnInit {
     } else if (
       educationOrWorkExpirience.classList.contains('work-expirience-inner')
     ) {
-      console.log('INDEX', i);
       this.userData.workExpirience.splice(i, 1);
-      console.log(this.userData.workExpirience);
       this.afs
         .collection(Utility.dataBase)
         .doc(this.userData.developerId)
@@ -348,7 +340,6 @@ export class AboutProfileComponent implements OnInit {
     }
   }
   edit(edit) {
-    console.log(edit);
     edit.style.display = 'flex';
   }
   removeEdit(edit) {

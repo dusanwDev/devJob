@@ -31,7 +31,6 @@ export class FeedCompanyComponent implements OnInit {
       .valueChanges()
       .subscribe((developer) => {
         this.developers = developer;
-        console.log(this.developers);
       });
     if (this.activatedRoute.snapshot.routeConfig.path === 'feed-company') {
       this.displayRemoveBtn = false;

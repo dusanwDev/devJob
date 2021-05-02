@@ -23,7 +23,6 @@ export class SavedJobsComponent implements OnInit {
         .valueChanges()
         .subscribe((dev) => {
           this.developer = dev;
-          console.log(this.developer);
         });
     });
   }

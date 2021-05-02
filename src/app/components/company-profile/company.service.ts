@@ -29,22 +29,6 @@ export class CompanyService {
         }
       })
     );
-    // console.log('PARAMS FOR DISABLE', params);
-    // console.log('USer id', user.userId);
-    // if (user.userId === params) {
-    //   console.log('PARAMS FOR DISABLE', params);
-    //   document.querySelectorAll('button').forEach((btn) => {
-    //     console.log(btn);
-    //     if (btn.classList.contains('submit-btn')) {
-    //       btn.style.display = 'none';
-    //       console.log(btn);
-    //     } else {
-    //       btn.style.display = 'block';
-    //     }
-    //   });
-    // }
-    // else {
-    //   document.querySelector('button').style.display = 'block';
-    // }
+
   }
 }

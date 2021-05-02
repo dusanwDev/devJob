@@ -31,7 +31,7 @@ export class LoginCompanyComponent implements OnInit {
         this.loginCompany.get('password').value
       )
       .subscribe(
-        (data) => console.log(data),
+        (data) => console.log(),
         (error) => {
           this.errorMessage = error;
         }
