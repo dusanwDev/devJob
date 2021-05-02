@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "assets": ["assets", "favicon.png"],
+            "assets": ["src/assets", "src/assets/favicon.png"],
             "styles": [
               "src/styles.scss",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
@@ -87,7 +87,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": ["src/assets", "favicon.png"],
+            "assets": ["src/assets", "src/assets/favicon.png"],
             "styles": ["src/styles.scss"],
             "scripts": []
           }
